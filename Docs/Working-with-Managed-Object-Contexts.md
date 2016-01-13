@@ -101,7 +101,7 @@ MagicalRecord.saveWithBlock({ localContext in
   let localPerson = Person.MR_inContext(localContext)
   localPerson.firstName = "John"
   localPerson.lastName = "Appleseed"
-}, completeion: {
+}, completion: {
   self.everyoneInTheDepartment = Person.findAll()
 })
 ```
