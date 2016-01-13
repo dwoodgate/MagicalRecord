@@ -24,8 +24,7 @@ NSArray *peopleSorted = [Person MR_findAllSortedBy:@"LastName"
 ```
 ```swift 
 //swift
-let peopleSorted = Person.MR_findAllSortedBy("LastName",
-                 ascending: true)
+let peopleSorted = Person.MR_findAllSortedBy("LastName", ascending: true)
 ```
 
 To return the entities sorted by multiple attributes:
@@ -37,8 +36,7 @@ NSArray *peopleSorted = [Person MR_findAllSortedBy:@"LastName,FirstName"
 ```
 ```swift 
 //swift
-let peopleSorted = Person.MR_findAllSortedBy("LastName,FirstName",
-                 ascending: true)
+let peopleSorted = Person.MR_findAllSortedBy("LastName,FirstName", ascending: true)
 ```
 
 To return the results sorted by multiple attributes with different values. If you don't provide a value for any attribute, it will default to whatever you've set in your model:
@@ -53,11 +51,9 @@ NSArray *peopleSorted = [Person MR_findAllSortedBy:@"LastName,FirstName:YES"
 ```
 ```swift
 //swift
-let peopleSorted = Person.MR_findAllSortedBy("LastName:NO,FirstName",
-                 ascending: true)
+let peopleSorted = Person.MR_findAllSortedBy("LastName:NO,FirstName", ascending: true)
 // OR
-let peopleSorted = Person.MR_findAllSortedBy("LastName,FirstName:YES",
-                 ascending: false)
+let peopleSorted = Person.MR_findAllSortedBy("LastName,FirstName:YES", ascending: false)
 ```
 If you have a unique way of retrieving a single object from your data store (such as an identifier attribute), you can use the following method:
 
@@ -68,8 +64,7 @@ Person *person = [Person MR_findFirstByAttribute:@"FirstName"
 ```
 ```swift
 //swift
-let person = Person.MR_findFirstByAttribute:"FirstName",
-            withValue: "Forrest")
+let person = Person.MR_findFirstByAttribute:"FirstName", withValue: "Forrest")
 ```
 
 #### Advanced Finding
