@@ -7,40 +7,69 @@ Most methods in MagicalRecord return an `NSArray` of results.
 As an example, if you have an entity named *Person* related to a *Department* entity (as seen in many of [Apple's Core Data examples](.com/library/mac/documentation/Cocoa/Conceptual/CoreData/Articles/cdBasics.html#//apple_ref/doc/uid/TP40001650-TP1)), you can retrieve all of the *Person* entities from your persistent store using the following method:
 
 ```objective-c
+//obj-c
 NSArray *people = [Person MR_findAll];
+```
+```swift
+//swift
+let people = Person.MR_findAll()
 ```
 
 To return the same entities sorted by a specific attribute:
 
 ```objective-c
+//obj-c
 NSArray *peopleSorted = [Person MR_findAllSortedBy:@"LastName"
                                          ascending:YES];
+```
+```swift 
+//swift
+let peopleSorted = Person.MR_findAllSortedBy("LastName",
+                 ascending: true)
 ```
 
 To return the entities sorted by multiple attributes:
 
 ```objective-c
+//obj-c
 NSArray *peopleSorted = [Person MR_findAllSortedBy:@"LastName,FirstName"
                                          ascending:YES];
+```
+```swift 
+//swift
+let peopleSorted = Person.MR_findAllSortedBy("LastName,FirstName",
+                 ascending: true)
 ```
 
 To return the results sorted by multiple attributes with different values. If you don't provide a value for any attribute, it will default to whatever you've set in your model:
 
 ```objective-c
+//obj-c
 NSArray *peopleSorted = [Person MR_findAllSortedBy:@"LastName:NO,FirstName"
                                          ascending:YES];
-
 // OR
-
 NSArray *peopleSorted = [Person MR_findAllSortedBy:@"LastName,FirstName:YES"
                                          ascending:NO];
 ```
-
+```swift
+//swift
+let peopleSorted = Person.MR_findAllSortedBy("LastName:NO,FirstName",
+                 ascending: true)
+// OR
+let peopleSorted = Person.MR_findAllSortedBy("LastName,FirstName:YES",
+                 ascending: false)
+```
 If you have a unique way of retrieving a single object from your data store (such as an identifier attribute), you can use the following method:
 
 ```objective-c
+//obj-c
 Person *person = [Person MR_findFirstByAttribute:@"FirstName"
                                        withValue:@"Forrest"];
+```
+```swift
+//swift
+let person = Person.MR_findFirstByAttribute:"FirstName",
+            withValue: "Forrest")
 ```
 
 #### Advanced Finding
@@ -48,6 +77,7 @@ Person *person = [Person MR_findFirstByAttribute:@"FirstName"
 If you want to be more specific with your search, you can use a predicate:
 
 ```objective-c
+//obj-c
 NSPredicate *peopleFilter = [NSPredicate predicateWithFormat:@"Department IN %@", @[dept1, dept2]];
 NSArray *people = [Person MR_findAllWithPredicate:peopleFilter];
 ```
@@ -55,6 +85,7 @@ NSArray *people = [Person MR_findAllWithPredicate:peopleFilter];
 #### Returning an NSFetchRequest
 
 ```objective-c
+//obj-c
 NSPredicate *peopleFilter = [NSPredicate predicateWithFormat:@"Department IN %@", departments];
 NSFetchRequest *people = [Person MR_requestAllWithPredicate:peopleFilter];
 ```
@@ -64,6 +95,7 @@ For each of these single line calls, an `NSFetchRequest` and `NSSortDescriptor`s
 #### Customizing the Request
 
 ```objective-c
+//obj-c
 NSPredicate *peopleFilter = [NSPredicate predicateWithFormat:@"Department IN %@", departments];
 
 NSFetchRequest *peopleRequest = [Person MR_requestAllWithPredicate:peopleFilter];
@@ -78,12 +110,14 @@ NSArray *people = [Person MR_executeFetchRequest:peopleRequest];
 You can also perform a count of all entities of a specific type in your persistent store:
 
 ```objective-c
+//obj-c
 NSNumber *count = [Person MR_numberOfEntities];
 ```
 
 Or, if you're looking for a count of entities based on a predicate or some filter:
 
 ```objective-c
+//obj-c
 NSNumber *count = [Person MR_numberOfEntitiesWithPredicate:...];
 ```
 
