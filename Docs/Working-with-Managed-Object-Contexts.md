@@ -17,14 +17,14 @@ When working with Core Data, you will regularly deal with two main objects: `NSM
 MagicalRecord provides a simple class method to retrieve a default `NSManagedObjectContext` that can be used throughout your app. This context operates on the main thread, and is great for simple, single-threaded apps.
 
 To access the default context, call:
-
 ```objective-c
 NSManagedObjectContext *defaultContext = [NSManagedObjectContext MR_defaultContext];
 ```
+<details><summary>Swift</summary>
 ```swift
-//swift
 let defaultContext = NSManagedObjectContext.MR_defaultContext()
 ```
+</details>
 
 This context will be used throughout MagicalRecord in any method that uses a context, but does not provde a specific managed object context parameter.
 
@@ -33,9 +33,11 @@ If you need to create a new managed object context for use in non-main threads, 
 ```objective-c
 NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_newContext];
 ```
+<details><summary>Swift</summary>
 ```swift
 let myNewContext = NSManagedObjectContext.MR_newContext()
 ```
+</details>
 
 This will create a new managed object context which has the same object model and persistent store as the default context, but is safe for use on another thread. It automatically sets the default context as it's parent context.
 
@@ -67,6 +69,7 @@ Person *person = ...;
 
 }];
 ```
+<details><summary>Swift</summary>
 ```swift
 //Swift
 MagicalRecord.saveWithBlock({ localContext in
@@ -75,7 +78,7 @@ MagicalRecord.saveWithBlock({ localContext in
   localPerson.lastName = "Appleseed"
 })
 ```
-
+</details>
 In this method, the specified block provides you with the proper context in which to perform your operations, you don't need to worry about setting up the context so that it tells the Default Context that it's done, and should update because changes were performed on another thread.
 
 To perform an action after this save block is completed, you can fill in a completion block:
@@ -95,6 +98,7 @@ Person *person = ...;
 
 }];
 ```
+<details><summary>Swift</summary>
 ```swift
 //Swift
 MagicalRecord.saveWithBlock({ localContext in
@@ -108,5 +112,5 @@ MagicalRecord.saveWithBlock({ localContext in
   self.everyoneInTheDepartment = Person.findAll()
 })
 ```
-
+</details>
 This completion block is called on the main thread (queue), so this is also safe for triggering UI updates.
