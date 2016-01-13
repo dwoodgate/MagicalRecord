@@ -70,7 +70,7 @@ Person *person = ...;
 ```swift
 //Swift
 MagicalRecord.saveWithBlock({ localContext in
-  let localPerson = Person.MR_inContext(taskContext)
+  let localPerson = Person.MR_inContext(localContext)
   localPerson.firstName = "John"
   localPerson.lastName = "Appleseed"
 })
@@ -98,7 +98,7 @@ Person *person = ...;
 ```swift
 //Swift
 MagicalRecord.saveWithBlock({ localContext in
-  let localPerson = Person.MR_inContext(taskContext)
+  let localPerson = Person.MR_inContext(localContext)
   localPerson.firstName = "John"
   localPerson.lastName = "Appleseed"
 }, completeion: {
