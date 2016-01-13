@@ -1,5 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
 # Creating Entities
 
 To create and insert a new instance of an Entity in the default context, you can use:
